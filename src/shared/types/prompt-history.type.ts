@@ -1,9 +1,9 @@
-type TPromptHistory = {
-    title: string;
-    url: string;
-}
+type TPromptLink = {
+  title: string;
+  url: string;
+};
 
 export type TPromptHistory = {
-     date: string;
-     links: TPromptHistory[];
-}
+  date: string;
+  links: TPromptLink[];
+};
