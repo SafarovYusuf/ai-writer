@@ -2,14 +2,21 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { CopyIcon, Share, Sparkles } from 'lucide-react';
 import Markdown from 'react-markdown';
+import { toast } from 'react-hot-toast';
 
 type ContentViewerProps = {
   content: string;
 };
 
 export default function ContentViewer({ content }: ContentViewerProps) {
-  const handleCopy = () => {
-    navigator.clipboard.writeText(content);
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(content);
+      toast.success('Successfully copied to clipboard!');
+    } catch (e) {
+      console.error('[Error] Failed to copy to clipboard', e);
+      toast.error('Error occured while copying to clipboard');
+    }
   };
 
   const handleShare = () => {
