@@ -2,7 +2,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
-import { useState, FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
 import { Spinner } from '../ui/spinner';
 
 export default function ContentDashboard() {
