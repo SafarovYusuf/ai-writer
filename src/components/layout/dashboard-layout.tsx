@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 export default function DashboardLayout() {
   // console.log(import.meta.env.VITE_GEMINI_API_KEY);
   return (
-    <div className=" h-screen overflow-hidden flex">
+    <div className=" h-screen overflow-x-hidden flex">
       <Sidebar />
       <div className="w-full">
         <Navbar />
