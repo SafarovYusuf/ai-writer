@@ -14,7 +14,7 @@ export default function Navbar() {
         <div>
           <DropdownMenu>
             <DropdownMenuTrigger>Yusuf</DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent className="bg-white">
               <DropdownMenuItem>Profile</DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Logout</DropdownMenuItem>

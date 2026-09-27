@@ -3,7 +3,8 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import React from 'react';
 import DashboardLayout from './components/layout/dashboard-layout';
-import ContentDashboard from './components/dashboard/content-dashboard';
+import DashboardHome from './pages/dashboard-home';
+import { AppContextProvider } from './contexts/app.context';
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <ContentDashboard />,
+        element: <DashboardHome />,
       },
     ],
   },
@@ -32,6 +33,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AppContextProvider>
+      <RouterProvider router={router} />
+    </AppContextProvider>
   </React.StrictMode>
 );
