@@ -55,7 +55,10 @@ export default function ContentCreateForm({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+      <form
+        onSubmit={form.handleSubmit(handleSubmit)}
+        className="space-y-2 md:space-y-4 md:mt-4 mt-2"
+      >
         {/* Title maydoni */}
         <FormField
           control={form.control}

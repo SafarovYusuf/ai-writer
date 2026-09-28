@@ -9,6 +9,8 @@ import {
 interface IAppContext {
   generatingContext: boolean;
   setGeneratingContext: (value: boolean) => void;
+  sidebarOpen: boolean;
+  toggleSidebar: () => void;
 }
 
 export const AppContext = createContext<IAppContext | null>(null);
@@ -27,9 +29,22 @@ interface IProps {
 
 const AppContextProvider: FC<IProps> = ({ children }) => {
   const [generatingContext, setGeneratingContext] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+    console.log('Toggling....');
+  };
 
   return (
-    <AppContext.Provider value={{ generatingContext, setGeneratingContext }}>
+    <AppContext.Provider
+      value={{
+        generatingContext,
+        setGeneratingContext,
+        sidebarOpen,
+        toggleSidebar,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );
