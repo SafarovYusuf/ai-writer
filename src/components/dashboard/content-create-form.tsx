@@ -16,11 +16,11 @@ import {
   FormMessage,
 } from '../ui/form';
 
-import type { ContentCreateRequestParam } from '@/shared/types/content-create-request-param';
+import type { TContentCreateRequestParam } from '@/shared/types/content-create-request-param';
 
 type ContentCreateProps = {
   isLoading: boolean;
-  onSubmit: (params: ContentCreateRequestParam) => void;
+  onSubmit: (params: TContentCreateRequestParam) => void;
 };
 
 const formSchema = z.object({

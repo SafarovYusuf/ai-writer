@@ -1,28 +1,16 @@
 import { useState } from 'react';
-import { generateArticle } from '@/utils/gemini';
 import ContentViewer from '@/components/dashboard/content-viewer';
 import ContentCreateForm from '@/components/dashboard/content-create-form';
-import type { ContentCreateRequestParam } from '../shared/types/content-create-request-param';
-import { useAppContext } from '@/contexts/app.context';
-import { toast } from 'react-hot-toast';
+import { useContentContext } from '@/contexts/content.context';
+import type { TContentCreateRequestParam } from '@/shared/types/content-create-request-param';
 
 export default function DashboardHome() {
-  const { generatingContext, setGeneratingContext } = useAppContext();
+  const { generateContent, generatingContext } = useContentContext();
   const [content, setContent] = useState<string | null>(null);
 
-  const handleSubmit = async (params: ContentCreateRequestParam) => {
-    setGeneratingContext(true);
-
-    const { title, description } = params;
-    try {
-      const result = await generateArticle(title, description);
-      setContent(result ?? null);
-    } catch (error) {
-      console.log(error);
-      toast.error('Error occurred while generating content');
-    } finally {
-      setGeneratingContext(false);
-    }
+  const handleSubmit = async (params: TContentCreateRequestParam) => {
+    const result = await generateContent(params);
+    setContent(result);
   };
 
   return (

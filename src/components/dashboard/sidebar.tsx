@@ -4,6 +4,7 @@ import type { TPromptHistory } from '@/shared/types/prompt-history.type';
 import { useAppContext } from '@/contexts/app.context';
 import { Spinner } from '../ui/spinner';
 import { clsx } from 'cn';
+import { useContentContext } from '@/contexts/content.context';
 
 const mockItems: TPromptHistory[] = [
   {
@@ -35,35 +36,28 @@ const mockItems: TPromptHistory[] = [
 ];
 
 export default function Sidebar() {
-  const { generatingContext, sidebarOpen } = useAppContext();
+  const { sidebarOpen } = useAppContext();
+  const { generatingContext } = useContentContext();
 
   return (
     <nav
       className={clsx(
         ` transition-all duration-300 h-screen  overflow-x-hidden md:w-80 md:border-r md:p-4`,
-        sidebarOpen ? 'w-72 p-4 border-r opacity-100' : 'w-0 '
+        sidebarOpen ? 'w-1/2 p-2 border-r ' : 'w-0 '
       )}
     >
-      {/* Ichki kontent kichrayib ketmasligi uchun min-w beramiz */}
-      <div className="w-72 flex flex-col h-full">
-        <div className="flex items-center justify-between pb-4">
-          <h1 className="text-xl font-semibold whitespace-nowrap">AI Writer</h1>
-          {generatingContext ? (
-            <Spinner data-icon="inline-start" />
-          ) : (
-            <button
-              type="button"
-              className="p-1.5 hover:bg-accent rounded-md transition-colors"
-            >
-              <Pencil size={20} />
-            </button>
-          )}
-        </div>
-
-        <div className="flex-1 overflow-y-auto">
-          <PromptHistory items={mockItems} />
-        </div>
+      <div className="flex items-center justify-between ">
+        <h1 className="text-xl font-semibold ">AI Writer</h1>
+        {generatingContext ? (
+          <Spinner data-icon="mr-2 h-4 w-4 animate-spin" />
+        ) : (
+          <button>
+            <Pencil className="w-6 h-6" />
+          </button>
+        )}
       </div>
+
+      <PromptHistory items={mockItems} />
     </nav>
   );
 }
