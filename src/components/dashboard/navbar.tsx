@@ -1,3 +1,5 @@
+import { Bars3Icon } from '@heroicons/react/24/outline';
+import { Button } from '../ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -5,16 +7,33 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
+import { useAppContext } from '@/contexts/app.context';
 
 export default function Navbar() {
+  const { toggleSidebar } = useAppContext();
+
   return (
-    <div className="border-b">
+    <header className="border-b bg-background">
       <nav className="flex items-center justify-between p-4 h-16">
-        <h4 className="font-semibold">Dashboard</h4>
+        {/* Chap tomon: Toggle tugmasi va sarlavha */}
+        <div className="flex items-center gap-3">
+          <Button
+            variant="outline"
+            className="block md:hidden text-center"
+            onClick={toggleSidebar}
+          >
+            <Bars3Icon className="w-6 h-6" />
+          </Button>
+          <h4 className="font-semibold text-lg">Dashboard</h4>
+        </div>
+
+        {/* O'ng tomon: Profil dropdown */}
         <div>
           <DropdownMenu>
-            <DropdownMenuTrigger>Yusuf</DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-white">
+            <DropdownMenuTrigger render={<Button variant="ghost" />}>
+              Yusuf
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
               <DropdownMenuItem>Profile</DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Logout</DropdownMenuItem>
@@ -22,6 +41,6 @@ export default function Navbar() {
           </DropdownMenu>
         </div>
       </nav>
-    </div>
+    </header>
   );
 }
